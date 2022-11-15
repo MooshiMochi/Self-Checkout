@@ -12,13 +12,13 @@ const Home = () => {
         <title>Age Verification | Home</title>
       </Helmet>
       <main>
-        <h1 className="font-mono">Age Verification</h1>
+        <h1 className="font-mono -translate-y-4">Age Verification</h1>
         <div className="main-div">
-          <div className="flex space-x-5 justify-center">
-            <button id="btn_login" className="w-24 m-auto">
+          <div className="flex space-x-5 justify-center align-middle">
+            <button id="btn_login" className="w-24">
               Login
             </button>
-            <button id="btn_signup" className="w-24 m-auto">
+            <button id="btn_signup" className="w-24">
               Sign up
             </button>
           </div>
