@@ -9,8 +9,9 @@
 }
 
 html {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+
+  font-family: 'Inter';
+
   font-style: italic;
   font-weight: 300;
   font-size: 30px;
