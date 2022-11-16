@@ -9,7 +9,7 @@
 }
 
 html {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: italic;
   font-weight: 300;
   font-size: 30px;
@@ -18,28 +18,19 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 50%;
-  height: 50%;
+  width: 90%;
+  height: 90%;
 
   background-color: var(--darker-green);
   border: 4px solid var(--light-aqua);
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 var(--light-aqua);
 
-  text-align: center;
   text-shadow: 0 0 10px var(--light-aqua);
   text-decoration-color: var(--light-aqua);
 }
@@ -51,11 +42,10 @@ button {
 
   /* width: 6rem; */
 
-  border: 4px solid var(--light-aqua);
+  border: 3px solid var(--light-aqua);
   box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
 
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -63,55 +53,4 @@ button {
 
   color: var(--darker-green);
   background-color: var(--light-grey);
-}
-
-@media screen and (max-width: 1000px) {
-  body {
-    width: 80%;
-    height: 80%;
-  }
-
-  button {
-    padding: 10px 15px;
-    font-size: 20px;
-  }
-
-  html {
-    font-size: 20px;
-    line-height: 50px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  body {
-    width: 90%;
-    height: 90%;
-  }
-
-  button {
-    padding: 5px 10px;
-    font-size: 15px;
-  }
-
-  html {
-    font-size: 15px;
-    line-height: 30px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  body {
-    width: 95%;
-    height: 95%;
-  }
-
-  button {
-    padding: 2px 5px;
-    font-size: 10px;
-  }
-
-  html {
-    font-size: 10px;
-    line-height: 20px;
-  }
 }
