@@ -1,22 +1,20 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const buttonClassName =
-    'min-w-36 py-1 px-0 inline-block text-sm text-center rounded-md';
+    "min-w-36 py-1 px-0 inline-block text-sm text-center rounded-md";
 
   async function handleLogin(e) {
-    navigate('/login');
+    navigate("/login");
   }
 
   async function handleRegister(e) {
-    navigate('/signup');
+    navigate("/signup");
   }
-
-  async function handleForgotPassword() {}
 
   return (
     <>
@@ -42,9 +40,9 @@ const Home = () => {
             Sign up
           </button>
         </div>
-        <div className='text-lg'>
-          <a href='#/'>
-            <i>Forgot password</i>
+        <div className='text-sm md:text-lg'>
+          <a href='/forgot-password' className=''>
+            Forgot Password
           </a>
         </div>
       </main>
