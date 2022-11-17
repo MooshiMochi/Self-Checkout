@@ -1,56 +1,58 @@
-import { PasswordInput, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { PasswordInput, TextInput, Button } from '@mantine/core';
+import { useForm } from '@mantine/form';
 
 export default function Signup() {
   const form = useForm({
     initialValues: {
-      email: "",
-      password: "",
-      password_confirm: "",
+      email: '',
+      password: '',
+      passwordConfirm: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
       password: (value) =>
-        value.length > 6 ? null : "Password must be at least 6 characters long",
-      password_confirm: (value) =>
-        value === form.values.password ? null : "Passwords do not match",
+        value.length > 6 ? null : 'Password must be at least 6 characters long',
+      passwordConfirm: (value, values) =>
+        values.password !== value ? 'Passwords do not match' : null,
     },
+    validateInputOnChange: true,
   });
 
   return (
     <>
-      <form
-        className='flex justify-around'
-        onSubmit={form.onSubmit(console.log)}
-      >
-        <TextInput
-          label='Email'
-          className=''
-          {...form.getInputProps("email")}
-        />
-        <PasswordInput label='Password' {...form.getInputProps("password")} />
-        <PasswordInput
-          label='Confirm Password'
-          {...form.getInputProps("password_confirm")}
-        />
-        <div>
-          <button
+      {/*used md: to create breakpoint for at a width of tablet size Same with the others.  */}
+      <div className='md:grid grid-cols-2 h-64 lg:h-72 2xl:h-96 md:mr-6'>
+        <h1 className='text-2xl text-center flex flex-col justify-center'>
+          Sign Up
+        </h1>
+        <form
+          className='w-11/12 lg:w-2/3 m-auto'
+          onSubmit={form.onSubmit(console.log)}
+        >
+          {/*Changed the width for different media devices to make form look smaller */}
+          <TextInput label='Email' placeholder='Enter your email' required />
+          <PasswordInput
+            label='Password'
+            placeholder='Enter your password'
+            required
+            {...form.getInputProps('password')}
+          />
+          <PasswordInput
+            label='Confirm Password'
+            placeholder='Confirm your password'
+            required
+            {...form.getInputProps('passwordConfirm')}
+          />
+          <Button
             type='submit'
-            className='text-xs p-0 h-fit translate-y-[46px]'
-            id='submit-button'
+            variant='outline'
+            color='green'
+            className='w-full'
           >
-            Register
-          </button>
-        </div>
-      </form>
+            Sign up
+          </Button>
+        </form>
+      </div>
     </>
   );
-
-  // const signup = async (e) => {};
-
-  // return (
-  //   <div>
-  //     <h1>Signup</h1>
-  //   </div>
-  // );
 }

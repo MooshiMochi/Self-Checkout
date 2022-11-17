@@ -144,6 +144,7 @@ dmypy.json
 
 # production
 /build
+/.history
 
 # misc
 .DS_Store
