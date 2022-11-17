@@ -1,7 +1,10 @@
-import { PasswordInput, TextInput, Button } from '@mantine/core';
+import { Button, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+  const navigate = useNavigate();
+
   const form = useForm({
     initialValues: {
       email: '',
@@ -27,7 +30,12 @@ export default function Signup() {
         </h1>
         <form
           className='w-11/12 lg:w-2/3 m-auto'
-          onSubmit={form.onSubmit(console.log)}
+          onSubmit={(values) => {
+            console.log(values);
+            form.onSubmit(values);
+            alert('Registered successfully!');
+            navigate('/home');
+          }}
         >
           {/*Changed the width for different media devices to make form look smaller */}
           <TextInput label='Email' placeholder='Enter your email' required />
