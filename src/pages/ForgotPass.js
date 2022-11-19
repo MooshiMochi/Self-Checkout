@@ -1,12 +1,9 @@
 import { Button, TextInput } from '@mantine/core';
-import { React } from 'react';
+import { React, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 export default function ForgotPass() {
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(e.target);
-  }
+  const [enterCode, showEnterCode] = useState(false);
 
   return (
     <>
@@ -22,7 +19,14 @@ export default function ForgotPass() {
           Forgot Password
         </h1>
         <h2 className='text-base align-text-top flex flex-col justify-center'>
-          Please enter your email address
+          {enterCode ? (
+            <>
+              We've found the email ... linked to your account<br></br>
+              Please enter the verification code sent
+            </>
+          ) : (
+            'Please enter your email address'
+          )}
         </h2>
 
         <form className='flex flex-col'>
@@ -39,7 +43,19 @@ export default function ForgotPass() {
               variant='outline'
               color='green'
               className='lg:w-1/2 lg:h-1/12 mt-2 rounded-lg border-4 border-teal-300 shadow-inner shadow-gray-600 text-inherit'
-              onClick={(e) => handleSubmit(e)}
+              onClick={() => {
+                showEnterCode(true);
+                document.getElementById('email').value = '';
+                // clear the input field
+
+                // send email to user
+
+                // show the input field for the code
+
+                // show the button to submit the code
+
+                // show the button to resend the code
+              }}
             >
               Next
             </Button>
