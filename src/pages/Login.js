@@ -1,9 +1,11 @@
 import { Button, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { emailRegex } from '../utils';
 
 export default function Signup() {
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
 
   const form = useForm({
@@ -20,13 +22,15 @@ export default function Signup() {
     validateInputOnChange: true,
   });
 
+  const [failMessage, showFailMessage] = useState(false);
+
   return (
     <>
       {/*used md: to create breakpoint for at a width of tablet size Same with the others.  */}
       {/* md:grid h-64 lg:h-72 2xl:h-96 md:mr-6 mx-auto */}
-      <div className='w-11/12 md:w-1/2 lg:w-2/5 mx-auto h-64 md:h-96'>
-        <h1 className='text-2xl text-center flex flex-col justify-center translate-y-1/2'>
-          Log in
+      <div className='w-11/12 translate-y-1/4 md:w-1/2 lg:w-2/5 mx-auto h-64 md:h-96'>
+        <h1 className='text-2xl text-center flex flex-col justify-center'>
+          Customer Login
         </h1>
         <form
           className='m-auto'
@@ -34,7 +38,8 @@ export default function Signup() {
             console.log(values);
             form.onSubmit(values);
             alert('Logged in successfully!');
-            navigate('/home');
+            showFailMessage(true);
+            // navigate('/home');
           }}
         >
           {/*Changed the width for different media devices to make form look smaller */}
@@ -59,6 +64,17 @@ export default function Signup() {
             Log in
           </Button>
         </form>
+
+        {showFailMessage ? (
+          <div className='text-center text-xs translate-y-1/2 text-2x1'>
+            <p className='font-thin'>
+              {!failMessage ? 'Invalid username or password' : failMessage}
+            </p>
+            <a href='#/forgot-password' className='font-black'>
+              Reset password here
+            </a>
+          </div>
+        ) : null}
       </div>
     </>
   );

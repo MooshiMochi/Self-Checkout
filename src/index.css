@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap');
 
 :root {
   --light-aqua: rgb(0, 255, 224);
@@ -9,7 +10,7 @@
 }
 
 html {
-  font-family: "Inter";
+  font-family: 'Kumbh Sans', sans-serif;
 
   font-style: italic;
   font-weight: 300;
@@ -20,7 +21,7 @@ html {
 
 h1 {
   font-style: normal;
-  font-weight: 900;
+  font-weight: 400;
   font-size: 60px;
   line-height: 77px;
   color: var(--light-aqua);
@@ -49,7 +50,7 @@ button {
   padding: 10px 20px;
   border: 3px solid var(--light-aqua);
 
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
