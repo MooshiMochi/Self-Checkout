@@ -1,92 +1,63 @@
-import { Button, TextInput } from '@mantine/core';
+import { Button, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { React } from 'react';
-import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
+import { emailRegex } from '../utils';
 
-export default function Login() {
+export default function Signup() {
+  const navigate = useNavigate();
+
   const form = useForm({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      username: (value) =>
+        emailRegex.test(value) ? null : 'Invalid email address',
       password: (value) =>
-        value.length > 0 ? null : 'Password must be at least 1 character long',
+        value.length > 6 ? null : 'Password must be at least 6 characters long',
     },
     validateInputOnChange: true,
   });
 
-  const login = async (e) => {
-    console.log('login');
-    // e.preventDefault();
-    // const res = await fetch('/api/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     email: form.values.email,
-    //     password: form.values.password,
-    //   }),
-    // });
-    // const data = await res.json();
-    // console.log(data);
-    // if (data.error) {
-    //   console.log(data.error);
-    // }
-    // if (data.token) {
-    //   console.log(data.token);
-    // }
-  };
   return (
     <>
-      <Helmet>
-        <meta charset='UTF-8' />
-        <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <title>Age Verification | Home</title>
-      </Helmet>
-      <div>
-        <main className='flex flex-col justify-center items-center h-screen m-auto fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-center'>
-          <h1 className='text-1x1'>Customer Login</h1>
-
-          <form
-            onSubmit={form.onSubmit((values) => {
-              console.log(values);
-            })}
-            className='flex flex-col'
-            action='/TEST_TARGET'
+      {/*used md: to create breakpoint for at a width of tablet size Same with the others.  */}
+      <div className='md:grid h-64 lg:h-72 2xl:h-96 md:mr-6 mx-auto'>
+        <h1 className='text-2xl text-center flex flex-col justify-center translate-y-1/2'>
+          Log in
+        </h1>
+        <form
+          className='lg:w-1/3 m-auto'
+          onSubmit={(values) => {
+            console.log(values);
+            form.onSubmit(values);
+            alert('Logged in successfully!');
+            navigate('/home');
+          }}
+        >
+          {/*Changed the width for different media devices to make form look smaller */}
+          <TextInput
+            label='Username'
+            placeholder='Enter your username'
+            required
+            {...form.getInputProps('username')}
+          />
+          <PasswordInput
+            label='Password'
+            placeholder='Enter your password'
+            required
+            {...form.getInputProps('password')}
+          />
+          <Button
+            type='submit'
+            variant='outline'
+            color='green'
+            className='w-full'
           >
-            <TextInput
-              type='username'
-              name='username'
-              id='username'
-              placeholder='Username'
-              className='lg:w-1/8 mt-4'
-              {...form.getInputProps('username')}
-            />
-            <TextInput
-              type='password'
-              name='password'
-              id='password'
-              placeholder='Password'
-              className='lg:w-1/8 mt-4'
-              {...form.getInputProps('password')}
-            />
-            <Button
-              type='submit'
-              variant='outline'
-              color='green'
-              className='lg:w-1/2 lg:h-1/12 mt-2 rounded-lg border-4 border-teal-300 shadow-inner shadow-gray-600 text-inherit'
-              onClick={() => {
-                login();
-              }}
-            >
-              Sign in
-            </Button>
-          </form>
-        </main>
+            Log in
+          </Button>
+        </form>
       </div>
     </>
   );

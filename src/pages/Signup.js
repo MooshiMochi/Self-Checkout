@@ -1,6 +1,7 @@
 import { Button, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate } from 'react-router-dom';
+import { emailRegex } from '../utils';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function Signup() {
       passwordConfirm: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => (emailRegex.test(value) ? null : 'Invalid email'),
       password: (value) =>
         value.length > 6 ? null : 'Password must be at least 6 characters long',
       passwordConfirm: (value, values) =>
@@ -33,7 +34,7 @@ export default function Signup() {
           onSubmit={(values) => {
             console.log(values);
             form.onSubmit(values);
-            alert('Registered successfully!');
+            alert('Signed Up successfully!');
             navigate('/home');
           }}
         >
