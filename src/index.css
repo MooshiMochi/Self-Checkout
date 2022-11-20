@@ -41,8 +41,8 @@ body {
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 var(--light-aqua);
 
-  text-shadow: 0 0 10px var(--light-aqua);
-  text-decoration-color: var(--light-aqua);
+  /* text-shadow: 0 0 10px var(--light-aqua); */
+  /* text-decoration-color: var(--light-aqua); */
 }
 
 button {

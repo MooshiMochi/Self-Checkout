@@ -35,11 +35,16 @@ export default function Signup() {
             console.log(values);
             form.onSubmit(values);
             alert('Signed Up successfully!');
-            navigate('/home');
+            navigate('/login');
           }}
         >
           {/*Changed the width for different media devices to make form look smaller */}
-          <TextInput label='Email' placeholder='Enter your email' required />
+          <TextInput
+            label='Email'
+            placeholder='Enter your email'
+            required
+            {...form.getInputProps('email')}
+          />
           <PasswordInput
             label='Password'
             placeholder='Enter your password'

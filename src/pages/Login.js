@@ -38,8 +38,8 @@ export default function Signup() {
             console.log(values);
             form.onSubmit(values);
             alert('Logged in successfully!');
-            showFailMessage(true);
-            // navigate('/home');
+            // showFailMessage(true);
+            navigate('/home');
           }}
         >
           {/*Changed the width for different media devices to make form look smaller */}
