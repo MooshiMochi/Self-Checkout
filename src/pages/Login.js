@@ -23,12 +23,13 @@ export default function Signup() {
   return (
     <>
       {/*used md: to create breakpoint for at a width of tablet size Same with the others.  */}
-      <div className='md:grid h-64 lg:h-72 2xl:h-96 md:mr-6 mx-auto'>
+      {/* md:grid h-64 lg:h-72 2xl:h-96 md:mr-6 mx-auto */}
+      <div className='min-[100px]:w-max mx-auto grid h-64 md:h-96'>
         <h1 className='text-2xl text-center flex flex-col justify-center translate-y-1/2'>
           Log in
         </h1>
         <form
-          className='lg:w-1/3 m-auto'
+          className='min-[100px]:w-11/12 md:w-11/12 lg:w-1/3 m-auto'
           onSubmit={(values) => {
             console.log(values);
             form.onSubmit(values);
