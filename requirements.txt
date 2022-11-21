@@ -1,0 +1,6 @@
+opencv-python
+pytesseract
+pillow
+blend-modes
+fastapi[all]
+uvicorn
