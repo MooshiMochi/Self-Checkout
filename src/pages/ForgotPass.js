@@ -12,19 +12,22 @@ export default function ForgotPass() {
   const [passwordReset, setPasswordReset] = useState(false);
   const [clicked, setClicked] = useState(0);
 
-  const form = useForm({
+  const emailForm = useForm({
     initialValues: {
       email: '',
     },
     validate: {
-      email: (value) =>
-        clicked === 0
-          ? /^\S+@\S+$/.test(value)
-            ? null
-            : 'Invalid email'
-          : /^\d{6}$/.test(value)
-          ? null
-          : 'Invalid code',
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+    },
+    validateInputOnChange: true,
+  });
+
+  const codeForm = useForm({
+    initialValues: {
+      code: '',
+    },
+    validate: {
+      code: (value) => (/^\d{6}$/.test(value) ? null : 'Invalid code'),
     },
     validateInputOnChange: true,
   });
@@ -39,10 +42,10 @@ export default function ForgotPass() {
       .then((res) => res.json())
       .then((data) => {
         if (data.length === 0) {
-          form.setFieldError('email', 'This email does not exist');
+          emailForm.setFieldError('email', 'This email does not exist');
         } else {
           // sendEmail(email);
-          form.clearFieldError('email');
+          // form.clearFieldError('email');
         }
       });
   };
@@ -62,21 +65,33 @@ export default function ForgotPass() {
       </h2>
 
       <form
-        onSubmit={form.onSubmit((values) => {
-          console.log(values);
-          form.setFieldValue('email', '');
-        })}
+        // onSubmit={form.onSubmit((values) => {
+        //   console.log(values);
+        //   form.setFieldValue('email', '');
+        // })}
         className='flex flex-col'
         action='/TEST_TARGET'
       >
-        <TextInput
-          type={clicked === 0 ? 'email' : 'number'}
-          name={clicked === 0 ? 'email' : 'code'}
-          id='email'
-          placeholder={clicked === 0 ? 'your@email.com' : 'Verification Code'}
-          className='lg:w-1/3 mt-4'
-          {...form.getInputProps('email')}
-        />
+        {/* There is a very annoying bug here... for some reason having this makes the page not render and idk why.... */}
+        {clicked === 0 ? (
+          <TextInput
+            type='email'
+            name='email'
+            id='email'
+            placeholder='your@email.com'
+            className='lg:w-1/3 mt-4'
+            {...emailForm.getInputProps('email')}
+          ></TextInput>
+        ) : (
+          <TextInput
+            type='number'
+            name='code'
+            id='code'
+            placeholder='Verification Code'
+            className='lg:w-1/3 mt-4'
+            {...codeForm.getInputProps('code')}
+          ></TextInput>
+        )}
         <div className='lg:w-1/6 lg:h-6'>
           <Button
             type='submit'
@@ -85,7 +100,7 @@ export default function ForgotPass() {
             className='lg:w-1/2 lg:h-1/12 mt-2 rounded-lg border-4 border-teal-300 shadow-inner shadow-gray-600 text-inherit'
             onClick={() => {
               if (clicked === 0) {
-                let email = form.getInputProps('email').value;
+                let email = emailForm.getInputProps('email').value;
                 emailExists(email);
               }
               setClicked(clicked + 1);
