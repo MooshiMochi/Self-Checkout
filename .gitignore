@@ -158,3 +158,5 @@ yarn-debug.log*
 yarn-error.log*
 
 **.exe
+
+**/database.db

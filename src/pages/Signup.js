@@ -15,12 +15,38 @@ export default function Signup() {
     validate: {
       email: (value) => (emailRegex.test(value) ? null : 'Invalid email'),
       password: (value) =>
-        value.length > 6 ? null : 'Password must be at least 6 characters long',
+        value.length >= 6
+          ? null
+          : 'Password must be at least 6 characters long',
       passwordConfirm: (value, values) =>
         values.password !== value ? 'Passwords do not match' : null,
     },
     validateInputOnChange: true,
   });
+
+  function requestSignUP() {
+    let email = form.getInputProps('email').value;
+    let pass = form.getInputProps('password').value;
+    console.log(`Email: ${email} Password: ${pass}`);
+    fetch('http://localhost:8000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: pass,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          navigate('/login');
+        } else {
+          form.setFieldError('email', 'This email is already in use');
+        }
+      });
+  }
 
   return (
     <>
@@ -32,10 +58,9 @@ export default function Signup() {
         <form
           className='w-11/12 lg:w-2/3 m-auto'
           onSubmit={(values) => {
-            console.log(values);
+            // console.log(values);
             form.onSubmit(values);
-            alert('Signed Up successfully!');
-            navigate('/login');
+            requestSignUP();
           }}
         >
           {/*Changed the width for different media devices to make form look smaller */}

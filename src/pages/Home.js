@@ -42,7 +42,7 @@ const Home = () => {
         </div>
         <div className='text-sm md:text-lg'>
           <a href='#/forgot-password' className=''>
-            Forgot Password
+            Forgot Password?
           </a>
         </div>
       </main>

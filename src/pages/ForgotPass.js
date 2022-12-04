@@ -9,18 +9,44 @@ export default function ForgotPass() {
   // let form = useForm({
   // const [enterCode, showEnterCode] = useState(false);
 
+  const [passwordReset, setPasswordReset] = useState(false);
+  const [clicked, setClicked] = useState(0);
+
   const form = useForm({
     initialValues: {
       email: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) =>
+        clicked === 0
+          ? /^\S+@\S+$/.test(value)
+            ? null
+            : 'Invalid email'
+          : /^\d{6}$/.test(value)
+          ? null
+          : 'Invalid code',
     },
     validateInputOnChange: true,
   });
 
-  const [passwordReset, setPasswordReset] = useState(false);
-  const [clicked, setClicked] = useState(0);
+  const emailExists = (email) => {
+    fetch(`http://localhost:8000/api/users?email=${email}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.length === 0) {
+          form.setFieldError('email', 'This email does not exist');
+        } else {
+          // sendEmail(email);
+          form.clearFieldError('email');
+        }
+      });
+  };
+
   let page = !passwordReset ? (
     <div>
       <h1 className='text-6xl flex flex-col justify-center'>Forgot Password</h1>
@@ -44,10 +70,10 @@ export default function ForgotPass() {
         action='/TEST_TARGET'
       >
         <TextInput
-          type='email'
-          name='email'
+          type={clicked === 0 ? 'email' : 'number'}
+          name={clicked === 0 ? 'email' : 'code'}
           id='email'
-          placeholder='your@email.com'
+          placeholder={clicked === 0 ? 'your@email.com' : 'Verification Code'}
           className='lg:w-1/3 mt-4'
           {...form.getInputProps('email')}
         />
@@ -58,6 +84,10 @@ export default function ForgotPass() {
             color='green'
             className='lg:w-1/2 lg:h-1/12 mt-2 rounded-lg border-4 border-teal-300 shadow-inner shadow-gray-600 text-inherit'
             onClick={() => {
+              if (clicked === 0) {
+                let email = form.getInputProps('email').value;
+                emailExists(email);
+              }
               setClicked(clicked + 1);
               clicked === 2 ? setPasswordReset(true) : setPasswordReset(false);
               console.log('Cleared input field');
@@ -77,7 +107,7 @@ export default function ForgotPass() {
           type='submit'
           variant='outline'
           color='green'
-          className=' mt-2 rounded-lg border-4 border-teal-300 shadow-inner shadow-gray-600 text-inherit'
+          className=' lg:w-1/2 lg:h-1/12 mt-2 rounded-lg border-4 border-teal-300 shadow-inner shadow-gray-600 text-inherit'
           onClick={() => {
             navigate('/login');
           }}

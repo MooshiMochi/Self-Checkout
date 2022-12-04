@@ -22,27 +22,42 @@ export default function Signup() {
     validateInputOnChange: true,
   });
 
-  const [failMessage, showFailMessage] = useState(false);
+  function btnSubmit() {
+    fetch('http://127.0.0.1:8000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: form.getInputProps('username').value,
+        password: form.getInputProps('password').value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          navigate('/home');
+        } else {
+          setFailMessage(true);
+        }
+      });
+  }
+
+  const [failMessage, setFailMessage] = useState(false);
 
   return (
     <>
-      {/*used md: to create breakpoint for at a width of tablet size Same with the others.  */}
-      {/* md:grid h-64 lg:h-72 2xl:h-96 md:mr-6 mx-auto */}
       <div className='w-11/12 translate-y-1/4 md:w-1/2 lg:w-2/5 mx-auto h-64 md:h-96'>
         <h1 className='text-2xl text-center flex flex-col justify-center'>
           Customer Login
         </h1>
         <form
           className='m-auto'
-          onSubmit={(values) => {
-            console.log(values);
-            form.onSubmit(values);
-            alert('Logged in successfully!');
-            // showFailMessage(true);
-            navigate('/home');
+          onSubmit={() => {
+            btnSubmit();
           }}
         >
-          {/*Changed the width for different media devices to make form look smaller */}
           <TextInput
             label='Username'
             placeholder='Enter your username'
@@ -60,15 +75,17 @@ export default function Signup() {
             variant='outline'
             color='green'
             className='w-full'
+            onClick={() => {
+              btnSubmit();
+            }}
           >
             Log in
           </Button>
         </form>
-
-        {showFailMessage ? (
+        {failMessage ? (
           <div className='text-center text-xs translate-y-1/2 text-2x1'>
             <p className='font-thin'>
-              {!failMessage ? 'Invalid username or password' : failMessage}
+              Invalid username or password. Please try again
             </p>
             <a href='#/forgot-password' className='font-black'>
               Reset password here

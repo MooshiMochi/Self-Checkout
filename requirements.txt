@@ -4,3 +4,4 @@ pillow
 blend-modes
 fastapi[all]
 uvicorn
+aiosqlite
