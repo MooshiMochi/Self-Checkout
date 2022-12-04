@@ -7,53 +7,58 @@ const Dashboard = () => {
     'rounded-lg shadow-lg border-4 border-teal-300 bg-grey-300';
   // w-1/3 flex flex-col justify-center items-center
   return (
-    <div className='grid grid-rows-3 w-full text-center h-full' id='TABLE'>
+    <>
       <div
-        className='flex flex-row justify-around items-center rounded-md border-red-500 border-4 relative'
-        id='ROW'
+        className='grid grid-rows-2 w-full text-center text-base h-1/2'
+        id='TABLE'
       >
-        <div className={base_box_style + ' w-1/5'}>Sample QR Code</div>
-        <div className='w-2/5'>
-          <div className=''>Personal Details</div>
-          <div className={base_box_style + ''}>
-            Name: ...<br></br>
-            Date of Birth: ...<br></br>
-            Customer ID: ...
+        <div
+          className='flex flex-row justify-around items-center rounded-md border-red-500 border-4 relative'
+          id='ROW'
+        >
+          <div className={base_box_style + ' w-1/5'}>Sample QR Code</div>
+          <div className='w-2/5'>
+            <div className=''>Personal Details</div>
+            <div className={base_box_style + ' content-editable'}>
+              Name: ...<br></br>
+              Date of Birth: ...<br></br>
+              Customer ID: ...
+            </div>
+          </div>
+          <div className='w-1/5'>
+            <button onClick={() => navigate('/')}>Log Out</button>
           </div>
         </div>
-        <div className='w-1/5'>
-          <button onClick={() => navigate('/')}>Log Out</button>
+        <div
+          className='flex flex-row justify-around items-center rounded-md border-green-500 border-4'
+          id='ROW'
+        >
+          <div>
+            <div>Home Address</div>
+            <div className={base_box_style}>
+              House Number: ...<br></br>
+              Street Name: ...<br></br>
+              City: ...<br></br>
+              Post Code: ...
+            </div>
+          </div>
+          <div className={base_box_style}>Sample Image</div>
+          <div>
+            <div>
+              <button>Select an image</button>
+            </div>
+            <div>
+              <button>Upload an image</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div
-        className='flex flex-row justify-around items-center rounded-md border-green-500 border-4'
-        id='ROW'
-      >
-        <div>
-          <div>Home Address</div>
-          <div className={base_box_style}>
-            House Number: ...<br></br>
-            Street Name: ...<br></br>
-            City: ...<br></br>
-            Post Code: ...
-          </div>
-        </div>
-        <div className={base_box_style}>Sample Image</div>
-        <div>
-          <div>
-            <button>Select an image</button>
-          </div>
-          <div>
-            <button>Upload an image</button>
-          </div>
-        </div>
-      </div>
-      <div className='rounded-md border-blue-500 border-4'>
+      <div className='rounded-md border-blue-500 border-4 flex justify-center items-center align-middle text-xs text-center'>
         If your personal details or home address are not filled then it is
         likely that your ID is not supported or the picture is blurry. Please
         re-upload a clearer picture of your ID.
       </div>
-    </div>
+    </>
   );
 };
 

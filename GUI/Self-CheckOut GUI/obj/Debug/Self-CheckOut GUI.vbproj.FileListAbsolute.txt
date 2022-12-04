@@ -1,0 +1,17 @@
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.vbproj.AssemblyReference.cache
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.vbproj.SuggestedBindingRedirects.cache
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self_CheckOut_GUI.ForgotPassword.resources
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self_CheckOut_GUI.Home.resources
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self_CheckOut_GUI.Login.resources
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self_CheckOut_GUI.Main.resources
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self_CheckOut_GUI.Resources.resources
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self_CheckOut_GUI.SignUp.resources
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.vbproj.GenerateResource.cache
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.vbproj.CoreCompileInputs.cache
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\bin\Debug\Self-CheckOut GUI.exe.config
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\bin\Debug\Self-CheckOut GUI.exe
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\bin\Debug\Self-CheckOut GUI.pdb
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\bin\Debug\Self-CheckOut GUI.xml
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.exe
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.xml
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.pdb

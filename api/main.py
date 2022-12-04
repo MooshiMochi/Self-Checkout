@@ -111,5 +111,54 @@ async def users(request: Request, email: Optional[str] = None):
         return None
 
 
+@app.get("/code")
+async def code(request: Request, email: Optional[str] = None):
+
+    if email and await app.db.check_exists(email):
+        # do stuff to generate a verification code here
+        code = 000_000
+        return {
+            "status": "success",
+            "code": code,
+            "success": True,
+        }
+    else:
+        return {
+            "status": "error",
+            "message": "Invalid email",
+            "success": False,
+        }
+
+
+@app.post("/renew-pass")
+async def renew_password(request: Request):
+    data = await request.body()
+    data = loads(data)
+
+    username = data["email"]
+    password = data["password"]
+    pass_hash = sha3_256(password.encode()).hexdigest()
+
+    if not await app.db.check_exists(username):
+
+        return {
+            "status": "error",
+            "message": "Username does not exist",
+            "success": False,
+        }
+
+    else:
+        await app.db.execute(
+            "UPDATE users SET password = ? WHERE username = ?",
+            pass_hash,
+            username,
+        )
+        return {
+            "status": "success",
+            "message": "Password changed successfully",
+            "success": True,
+        }
+
+
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
