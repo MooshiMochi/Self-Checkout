@@ -63,29 +63,27 @@ Partial Class Login
         '
         'txtUsername
         '
-        Me.txtUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUsername.Location = New System.Drawing.Point(511, 232)
+        Me.txtUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsername.Location = New System.Drawing.Point(455, 232)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(382, 80)
+        Me.txtUsername.Size = New System.Drawing.Size(523, 44)
         Me.txtUsername.TabIndex = 10
-        Me.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtPassword
         '
-        Me.txtPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPassword.Location = New System.Drawing.Point(511, 433)
+        Me.txtPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPassword.Location = New System.Drawing.Point(455, 433)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(382, 80)
+        Me.txtPassword.Size = New System.Drawing.Size(523, 44)
         Me.txtPassword.TabIndex = 12
-        Me.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Lucida Sans", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(504, 192)
+        Me.Label1.Location = New System.Drawing.Point(448, 192)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(184, 37)
         Me.Label1.TabIndex = 13
@@ -96,7 +94,7 @@ Partial Class Login
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Lucida Sans", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(504, 393)
+        Me.Label2.Location = New System.Drawing.Point(448, 393)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(174, 37)
         Me.Label2.TabIndex = 14
@@ -107,7 +105,7 @@ Partial Class Login
         Me.lblErrUsername.AutoSize = True
         Me.lblErrUsername.Font = New System.Drawing.Font("Lucida Sans", 10.125!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblErrUsername.ForeColor = System.Drawing.Color.OrangeRed
-        Me.lblErrUsername.Location = New System.Drawing.Point(505, 315)
+        Me.lblErrUsername.Location = New System.Drawing.Point(585, 293)
         Me.lblErrUsername.Name = "lblErrUsername"
         Me.lblErrUsername.Size = New System.Drawing.Size(226, 32)
         Me.lblErrUsername.TabIndex = 15
@@ -119,7 +117,7 @@ Partial Class Login
         Me.lblErrPassword.AutoSize = True
         Me.lblErrPassword.Font = New System.Drawing.Font("Lucida Sans", 10.125!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblErrPassword.ForeColor = System.Drawing.Color.OrangeRed
-        Me.lblErrPassword.Location = New System.Drawing.Point(395, 516)
+        Me.lblErrPassword.Location = New System.Drawing.Point(391, 492)
         Me.lblErrPassword.Name = "lblErrPassword"
         Me.lblErrPassword.Size = New System.Drawing.Size(639, 32)
         Me.lblErrPassword.TabIndex = 16

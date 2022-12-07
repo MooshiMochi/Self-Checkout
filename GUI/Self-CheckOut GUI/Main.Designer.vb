@@ -26,6 +26,7 @@ Partial Class Main
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.btnSignUp = New System.Windows.Forms.Button()
         Me.lblForgotPass = New System.Windows.Forms.Label()
+        Me.labelAPIOffline = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -84,12 +85,25 @@ Partial Class Main
         Me.lblForgotPass.TabIndex = 3
         Me.lblForgotPass.Text = "Forgot Password"
         '
+        'labelAPIOffline
+        '
+        Me.labelAPIOffline.AutoSize = True
+        Me.labelAPIOffline.Font = New System.Drawing.Font("Lucida Sans", 10.125!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelAPIOffline.ForeColor = System.Drawing.Color.Red
+        Me.labelAPIOffline.Location = New System.Drawing.Point(213, 661)
+        Me.labelAPIOffline.Name = "labelAPIOffline"
+        Me.labelAPIOffline.Size = New System.Drawing.Size(969, 32)
+        Me.labelAPIOffline.TabIndex = 4
+        Me.labelAPIOffline.Text = "⚠️ This service is temporarily unavailable until the API is back online."
+        Me.labelAPIOffline.Visible = False
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(132, Byte), Integer), CType(CType(116, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1398, 755)
+        Me.Controls.Add(Me.labelAPIOffline)
         Me.Controls.Add(Me.lblForgotPass)
         Me.Controls.Add(Me.btnSignUp)
         Me.Controls.Add(Me.btnLogin)
@@ -106,4 +120,5 @@ Partial Class Main
     Friend WithEvents btnLogin As Button
     Friend WithEvents btnSignUp As Button
     Friend WithEvents lblForgotPass As Label
+    Friend WithEvents labelAPIOffline As Label
 End Class

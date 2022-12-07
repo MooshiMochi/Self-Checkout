@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports System.Web.Script.Serialization
-
 Imports System.Text
 
 Public Class Login
@@ -39,36 +38,10 @@ Public Class Login
         ' send a request to localhost:8080/login with the following json body: 
         ' {username: username, password: password}
 
-        Dim request As HttpWebRequest = WebRequest.Create("http://127.0.0.1:8000/login")
-        request.Method = "POST"
-        request.ContentType = "application/json"
-
-        Dim json As String = "{""username"":""" & username & """,""password"":""" & password & """}"
-        Dim data As Byte() = Encoding.UTF8.GetBytes(json)
-
-        request.ContentLength = data.Length
-
-        Dim stream As Stream = request.GetRequestStream()
-        stream.Write(data, 0, data.Length)
-        stream.Close()
-
-        Dim response As HttpWebResponse = request.GetResponse()
-        Dim responseString As String = New StreamReader(response.GetResponseStream()).ReadToEnd()
-        response.Close()
-
-        ' if the response is "true" then the login was successful
-        ' if the response is "false" then the login was unsuccessful
-        Console.WriteLine(responseString)
-
-        ' parse the response string to a dict
-        Dim jss As New JavaScriptSerializer()
-        Dim dict As Dictionary(Of String, String) = jss.Deserialize(Of Dictionary(Of String, String))(responseString)
-
-        If dict.Item("success") = True Then
-            MsgBox("Login successful")
-        Else
-            MsgBox("Login unsuccessful")
-        End If
+        Dim RequestProxy As New Request()
+        Dim data As String = "{""username"":""" & username & """,""password"":""" & password & """}"
+        Dim request As HttpWebRequest = WebRequest.Create("http://localhost:8000/login")
+        RequestProxy.MakeRequest(request, "POST", "application/json", data, AddressOf RequestCallback)
 
     End Sub
 
@@ -76,4 +49,21 @@ Public Class Login
         Me.Hide()
         ForgotPassword.Show()
     End Sub
+
+    Private Function RequestCallback(ByVal response As String) As Dictionary(Of String, String)
+
+        Console.WriteLine(response)
+
+        ' parse the response string to a dict
+        Dim jss As New JavaScriptSerializer()
+        Dim dict As Dictionary(Of String, String) = jss.Deserialize(Of Dictionary(Of String, String))(response)
+
+        If dict.Item("success") = True Then
+            MsgBox("Login successful")
+        Else
+            MsgBox("Login unsuccessful")
+        End If
+        Return dict
+    End Function
+
 End Class

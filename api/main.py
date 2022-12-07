@@ -1,5 +1,5 @@
 from hashlib import sha3_256
-from json import dumps, loads
+from json import loads
 from typing import Optional
 
 import uvicorn
@@ -125,9 +125,15 @@ async def code(request: Request, email: Optional[str] = None):
     else:
         return {
             "status": "error",
-            "message": "Invalid email",
+            "message": f"Email '{email}' is not valid!",
             "success": False,
         }
+
+
+@app.get("/status")
+async def status(request: Request) -> None:
+    # check whether the API is running
+    return {"status": True, "success": True}
 
 
 @app.post("/renew-pass")
