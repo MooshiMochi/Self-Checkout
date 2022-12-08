@@ -3,10 +3,11 @@ from json import loads
 from typing import Optional
 
 import uvicorn
-from database import Database
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.requests import Request
+
+from database import Database
 
 
 class API(FastAPI):

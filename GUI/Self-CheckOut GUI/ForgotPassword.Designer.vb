@@ -48,6 +48,7 @@ Partial Class ForgotPassword
         Me.txtInput.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtInput.Location = New System.Drawing.Point(103, 266)
         Me.txtInput.Name = "txtInput"
+        Me.txtInput.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtInput.Size = New System.Drawing.Size(705, 80)
         Me.txtInput.TabIndex = 27
         '
@@ -98,9 +99,9 @@ Partial Class ForgotPassword
         Me.lblErrPassConfirm.ForeColor = System.Drawing.Color.OrangeRed
         Me.lblErrPassConfirm.Location = New System.Drawing.Point(97, 571)
         Me.lblErrPassConfirm.Name = "lblErrPassConfirm"
-        Me.lblErrPassConfirm.Size = New System.Drawing.Size(339, 32)
+        Me.lblErrPassConfirm.Size = New System.Drawing.Size(359, 32)
         Me.lblErrPassConfirm.TabIndex = 33
-        Me.lblErrPassConfirm.Text = "⚠️ Invalid email address"
+        Me.lblErrPassConfirm.Text = "⚠️ Passwords don't match"
         Me.lblErrPassConfirm.Visible = False
         '
         'lblReEnterPass
@@ -108,7 +109,7 @@ Partial Class ForgotPassword
         Me.lblReEnterPass.AutoSize = True
         Me.lblReEnterPass.Font = New System.Drawing.Font("Lucida Sans", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblReEnterPass.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.lblReEnterPass.Location = New System.Drawing.Point(96, 424)
+        Me.lblReEnterPass.Location = New System.Drawing.Point(96, 433)
         Me.lblReEnterPass.Name = "lblReEnterPass"
         Me.lblReEnterPass.Size = New System.Drawing.Size(321, 37)
         Me.lblReEnterPass.TabIndex = 32
@@ -120,6 +121,7 @@ Partial Class ForgotPassword
         Me.txtPassConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPassConfirm.Location = New System.Drawing.Point(103, 488)
         Me.txtPassConfirm.Name = "txtPassConfirm"
+        Me.txtPassConfirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassConfirm.Size = New System.Drawing.Size(705, 80)
         Me.txtPassConfirm.TabIndex = 31
         Me.txtPassConfirm.Visible = False

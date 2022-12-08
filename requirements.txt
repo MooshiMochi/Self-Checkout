@@ -5,3 +5,5 @@ blend-modes
 fastapi[all]
 uvicorn
 aiosqlite
+qrcode
+pyotp

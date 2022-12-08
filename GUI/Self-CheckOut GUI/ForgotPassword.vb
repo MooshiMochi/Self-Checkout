@@ -2,7 +2,6 @@
 Imports System.Net
 Imports System.Web.Script.Serialization
 
-
 Public Class ForgotPassword
 
     Dim page As Integer = 0
@@ -22,6 +21,11 @@ Public Class ForgotPassword
                 lblInstruction.Text = "We've found the email ... linked to your account"
                 lblInstruction.Text += vbNewLine + "Please enter the verification code sent"
                 txtInput.Text = ""
+
+                Dim location As Point = txtInput.Location
+                location.Y += 15
+                txtInput.Location = location
+
             End If
         End If
     End Sub
@@ -52,9 +56,9 @@ Public Class ForgotPassword
 
             lblInstruction.Text = "Please enter your new password" + vbNewLine
             lblInstruction.Text += "Password must be at least 6 characters long"
-
             txtInput.Text = ""
-            MessageBox.Show(btnNext.Location.ToString())
+
+            ' MessageBox.Show(btnNext.Location.ToString())
             ' btnNext.Location.Offset(New Point(0, 120))
             btnNext.Location = New Point(52, 340)
 
@@ -134,8 +138,9 @@ Public Class ForgotPassword
 
         If dict("success") Then
             serverVerificationCode = dict("code")
+        Else
+            serverVerificationCode = -1
         End If
-        serverVerificationCode = -1
 
         Console.WriteLine("Verification code received is " & serverVerificationCode)
 
@@ -154,12 +159,13 @@ Public Class ForgotPassword
             Dim login As New Login
             login.Show()
         Else
-            MessageBox.Show("An error occurred while trying to change your password. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("An API error occurred while trying to change your password. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End If
 
         Return dict("success")
 
     End Function
+
 
 End Class

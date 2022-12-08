@@ -1,12 +1,10 @@
-﻿Imports System.IO
-Imports System.Net
+﻿Imports System.Net
 Imports System.Web.Script.Serialization
-Imports System.Text
 
 Public Class Login
 
 
-    Private Sub txtUsername_TextChanged(sender As Object, e As EventArgs) Handles txtUsername.TextChanged
+    Private Sub TxtUsername_TextChanged(sender As Object, e As EventArgs) Handles txtUsername.TextChanged
         If txtUsername.Text = "" Then
             lblErrUsername.Show()
         Else
@@ -14,7 +12,7 @@ Public Class Login
         End If
     End Sub
 
-    Private Sub txtPassword_TextChanged(sender As Object, e As EventArgs) Handles txtPassword.TextChanged
+    Private Sub TxtPassword_TextChanged(sender As Object, e As EventArgs) Handles txtPassword.TextChanged
         If txtPassword.Text = "" Then
             lblErrPassword.Show()
         Else
@@ -24,7 +22,7 @@ Public Class Login
 
 
 
-    Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+    Private Sub BtnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
 
         Dim username As String = txtUsername.Text
         Dim password As String = txtPassword.Text
@@ -45,7 +43,7 @@ Public Class Login
 
     End Sub
 
-    Private Sub lblForgotPass_Click(sender As Object, e As EventArgs) Handles lblForgotPass.Click
+    Private Sub LblForgotPass_Click(sender As Object, e As EventArgs) Handles lblForgotPass.Click
         Me.Hide()
         ForgotPassword.Show()
     End Sub
@@ -59,7 +57,9 @@ Public Class Login
         Dim dict As Dictionary(Of String, String) = jss.Deserialize(Of Dictionary(Of String, String))(response)
 
         If dict.Item("success") = True Then
-            MsgBox("Login successful")
+            Me.Close()
+            Home.Show()
+            ' MsgBox("Login successful")
         Else
             MsgBox("Login unsuccessful")
         End If

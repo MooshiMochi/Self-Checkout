@@ -31,8 +31,8 @@ Public Class Request
 
     End Sub
 
-    ' before making the request, check whether the API is running.
     Public Function CheckAPIStatus() As Boolean
+        ' checks whether the API is running.
 
         Dim APIStatus As Boolean
 
@@ -61,6 +61,5 @@ Public Class Request
         Return APIStatus
 
     End Function
-
 
 End Class
