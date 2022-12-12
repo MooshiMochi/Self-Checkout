@@ -1,3 +1,20 @@
 {
-  "cSpell.words": ["mantine", "qrcode", "TOTP"]
+  "cSpell.words": [
+    "CCOEFF",
+    "Denoising",
+    "denosied",
+    "frontalface",
+    "haarcascade",
+    "imread",
+    "imshow",
+    "imwrite",
+    "mantine",
+    "ndarray",
+    "OTSU",
+    "pytesseract",
+    "qrcode",
+    "Tesseract",
+    "thresholding",
+    "TOTP"
+  ]
 }

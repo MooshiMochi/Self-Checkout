@@ -15,3 +15,4 @@ C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\
 C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.exe
 C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.xml
 C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self-CheckOut GUI.pdb
+C:\Users\rchir\OneDrive\Desktop\GitProjects\Self-Checkout\GUI\Self-CheckOut GUI\obj\Debug\Self_CheckOut_GUI.ViewPictureBox.resources

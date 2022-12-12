@@ -45,11 +45,10 @@ Partial Class ForgotPassword
         '
         'txtInput
         '
-        Me.txtInput.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtInput.Font = New System.Drawing.Font("Lucida Sans", 12.0!)
         Me.txtInput.Location = New System.Drawing.Point(103, 266)
         Me.txtInput.Name = "txtInput"
-        Me.txtInput.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtInput.Size = New System.Drawing.Size(705, 80)
+        Me.txtInput.Size = New System.Drawing.Size(705, 45)
         Me.txtInput.TabIndex = 27
         '
         'btnNext
@@ -118,11 +117,11 @@ Partial Class ForgotPassword
         '
         'txtPassConfirm
         '
-        Me.txtPassConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPassConfirm.Font = New System.Drawing.Font("Lucida Sans", 12.0!)
         Me.txtPassConfirm.Location = New System.Drawing.Point(103, 488)
         Me.txtPassConfirm.Name = "txtPassConfirm"
         Me.txtPassConfirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassConfirm.Size = New System.Drawing.Size(705, 80)
+        Me.txtPassConfirm.Size = New System.Drawing.Size(705, 45)
         Me.txtPassConfirm.TabIndex = 31
         Me.txtPassConfirm.Visible = False
         '

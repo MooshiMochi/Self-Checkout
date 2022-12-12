@@ -7,21 +7,22 @@ Public Class ForgotPassword
     Dim page As Integer = 0
     Dim enteredEmail As String
     Dim codeAttemptsLeft As Integer = 3
-    Dim serverVerificationCode As Integer
 
-    Private Sub runPage0Checks(ByRef page As Integer)
+    Private Sub SubmitEmailCheck(ByRef page As Integer)
         If txtInput.Text = "" Then
             lblErrInput.Text = "⚠️ Please enter your email address."
             lblErrInput.Show()
+
         Else
             If Regex.IsMatch(txtInput.Text, "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$") Then
                 enteredEmail = txtInput.Text
                 lblErrInput.Hide()
                 page = 1
                 lblInstruction.Text = "We've found the email ... linked to your account"
-                lblInstruction.Text += vbNewLine + "Please enter the verification code sent"
+                lblInstruction.Text += vbNewLine + "Please enter the verification code from your authenticator app"
                 txtInput.Text = ""
 
+                ' translate the button down
                 Dim location As Point = txtInput.Location
                 location.Y += 15
                 txtInput.Location = location
@@ -30,7 +31,7 @@ Public Class ForgotPassword
         End If
     End Sub
 
-    Private Sub runPage1Checks(ByRef page As Integer)
+    Private Sub SubmitCodeCheck(ByRef page As Integer)
         If txtInput.Text = "" Then
             lblErrInput.Text = "⚠️ Please enter the verification code!"
             lblErrInput.Show()
@@ -43,110 +44,96 @@ Public Class ForgotPassword
             Return
         End If
 
-        ' request the verification code from the API
-        Dim verificationCode As Integer = GetVerificationCode(enteredEmail)
-
-        If verificationCode = -1 Then
-            MessageBox.Show("An error occurred while trying to get the verification code. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-
-        ElseIf CInt(txtInput.Text) = verificationCode Then
-            MessageBox.Show("Verification Successful!")
-            page = 2
-
-            lblInstruction.Text = "Please enter your new password" + vbNewLine
-            lblInstruction.Text += "Password must be at least 6 characters long"
-            txtInput.Text = ""
-
-            ' MessageBox.Show(btnNext.Location.ToString())
-            ' btnNext.Location.Offset(New Point(0, 120))
-            btnNext.Location = New Point(52, 340)
-
-            lblReEnterPass.Show()
-            txtPassConfirm.Show()
-
-        Else
-            lblErrInput.Text = "⚠️ The verification code is incorrect!"
-            lblErrInput.Show()
-            codeAttemptsLeft -= 1
-        End If
+        CheckVerificationCode(enteredEmail.ToLower(), CInt(txtInput.Text))
     End Sub
 
-    Private Sub runPage2Checks()
-        If txtInput.Text <> "" And txtPassConfirm.Text <> "" And txtInput.Text = txtPassConfirm.Text And txtInput.Text.Length >= 6 Then
+    Private Sub SubmitNewPasswordCheck()
 
+        If txtInput.Text = "" Then
+            lblErrInput.Text = "⚠️ Please enter your new password."
+            lblErrInput.Show()
+            Return
+        ElseIf txtInput.Text.Length < 6 Then
+            lblErrInput.Text = "⚠️ Password must be at least 6 characters."
+            lblErrInput.Show()
+            Return
+
+        ElseIf txtPassConfirm.Text = "" Then
+            lblErrInput.Text = "⚠️ Please confirm your new password."
+            lblErrInput.Show()
+            Return
+
+        ElseIf txtInput.Text <> txtPassConfirm.Text Then
+            lblErrInput.Text = "⚠️ Passwords do not match."
+            lblErrInput.Show()
+            Return
+
+        Else
             Dim RequestProxy As New Request()
 
             ' send a request to localhost:8080/forgotpassword with the following json body: 
             ' {email: enteredEmail, password: txtInput.Text}
-            Dim request As HttpWebRequest = WebRequest.Create("http://localhost:8000/renew-pass")
+            Dim request As HttpWebRequest = WebRequest.Create(Constants.BASE_API_URL & "/renew-pass")
             Dim data As String = "{""email"":""" & enteredEmail & """,""password"":""" & txtInput.Text & """}"
 
             RequestProxy.MakeRequest(request, "POST", "application/json", data, AddressOf PasswordResetRequestCallback)
-        Else
-            If txtInput.Text = "" Then
-                lblErrInput.Text = "⚠️ Please enter your new password!"
-                lblErrInput.Show()
-            End If
-            If txtPassConfirm.Text = "" Then
-                lblErrPassConfirm.Text = "⚠️ Please confirm your password!"
-                lblErrPassConfirm.Show()
-            End If
-            If txtInput.Text <> txtPassConfirm.Text Then
-                lblErrPassConfirm.Text = "⚠️ Passwords do not match!"
-                lblErrPassConfirm.Show()
-            End If
-            If txtInput.Text.Length < 6 Then
-                lblErrInput.Text = "⚠️ Password must be at least 6 characters long!"
-                lblErrInput.Show()
-            End If
+
         End If
 
     End Sub
 
-    Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+
+    Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
         If page = 0 Then
-            runPage0Checks(page)
+            SubmitEmailCheck(page)
         ElseIf page = 1 Then
-            runPage1Checks(page)
+            SubmitCodeCheck(page)
         ElseIf page = 2 Then
-            runPage2Checks()
+            SubmitNewPasswordCheck()
         End If
-
     End Sub
 
-    Private Function GetVerificationCode(username As String) As Integer
-        ' send a request to the API to check what the verification code that the user needs to enter is
+    Private Sub CheckVerificationCode(username As String, code As Integer)
 
+        Dim parameters As String = "?username=" & username & "&code=" & code
+
+        Dim request As HttpWebRequest = WebRequest.Create(Constants.BASE_API_URL & "/verify-code" & parameters)
         Dim RequestProxy As New Request()
-        Dim request As HttpWebRequest = WebRequest.Create("http://localhost:8000/code?email=" & username)
-        request.Method = "GET"
-        request.ContentType = "application/json"
 
-        RequestProxy.MakeRequest(request, "GET", "application/json", Nothing, AddressOf CodeRequestCallback)
+        RequestProxy.MakeRequest(request, "GET", "application/json", Nothing, AddressOf CheckVerificationCodeCallback)
+    End Sub
 
-        Return serverVerificationCode
-
-    End Function
-
-    Private Function CodeRequestCallback(response As String) As Integer
-
+    Private Sub CheckVerificationCodeCallback(response As String)
+        MessageBox.Show(response)
         Dim jss As New JavaScriptSerializer()
-        Dim dict As Dictionary(Of String, Object) = jss.Deserialize(Of Dictionary(Of String, Object))(response)
+        Dim responseObj As Object = jss.Deserialize(Of Object)(response)
 
-        Console.WriteLine("Success status: " & dict("success"))
+        If responseObj("success") = True And responseObj("code_valid") = True Then
+            page = 2
+            lblInstruction.Text = "Please enter your new password"
+            lblInstruction.Text += vbNewLine + "Password must be at least 6 characters long"
 
-        If dict("success") Then
-            serverVerificationCode = dict("code")
+            txtInput.Text = ""
+            txtInput.PasswordChar = "*"
+
+            txtPassConfirm.Text = ""
+            txtPassConfirm.Show()
+
+            lblErrPassConfirm.Hide()
+            lblErrInput.Hide()
+
+            codeAttemptsLeft = 3
+
+            btnNext.Location = New Point(52, 340)
+            lblReEnterPass.Show()
+            txtPassConfirm.Show()
         Else
-            serverVerificationCode = -1
+            codeAttemptsLeft -= 1
+            lblErrInput.Text = "⚠️ Invalid code! You have " & codeAttemptsLeft & " attempts left."
+            lblErrInput.Show()
         End If
+    End Sub
 
-        Console.WriteLine("Verification code received is " & serverVerificationCode)
-
-        Return serverVerificationCode
-
-    End Function
 
     Private Function PasswordResetRequestCallback(response As String)
 
@@ -167,5 +154,9 @@ Public Class ForgotPassword
 
     End Function
 
-
+    Private Sub TxtInput_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtInput.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            btnNext.PerformClick()
+        End If
+    End Sub
 End Class

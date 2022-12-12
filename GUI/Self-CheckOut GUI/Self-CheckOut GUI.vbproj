@@ -74,6 +74,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.vb" />
     <Compile Include="Request.vb" />
     <Compile Include="ForgotPassword.Designer.vb">
       <DependentUpon>ForgotPassword.vb</DependentUpon>
@@ -121,6 +122,12 @@
     <Compile Include="SignUp.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ViewPictureBox.Designer.vb">
+      <DependentUpon>ViewPictureBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPictureBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ForgotPassword.resx">
@@ -145,6 +152,9 @@
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewPictureBox.resx">
+      <DependentUpon>ViewPictureBox.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
@@ -157,6 +167,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -22,12 +22,25 @@ Public Class Request
             writer.Close()
             dataStream.Close()
         End If
+        Try
+            Dim response As HttpWebResponse = request.GetResponse()
+            Dim responseString As String = New StreamReader(response.GetResponseStream()).ReadToEnd()
+            response.Close()
+            callback(responseString)
 
-        Dim response As HttpWebResponse = request.GetResponse()
-        Dim responseString As String = New StreamReader(response.GetResponseStream()).ReadToEnd()
-        response.Close()
+        Catch ex As WebException
+            ' get the returned message by the API and display it here
+            Dim response As HttpWebResponse = ex.Response
+            Dim responseString As String = New StreamReader(response.GetResponseStream()).ReadToEnd()
 
-        callback(responseString)
+            Dim jss As New JavaScriptSerializer()
+            Dim responseObj As Object = jss.Deserialize(Of Object)(responseString)
+
+            response.Close()
+            MessageBox.Show(responseObj("message"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
 
     End Sub
 
@@ -37,7 +50,7 @@ Public Class Request
         Dim APIStatus As Boolean
 
         Try
-            Dim request As HttpWebRequest = WebRequest.Create("http://localhost:8000/status")
+            Dim request As HttpWebRequest = WebRequest.Create(Constants.BASE_API_URL & "/status")
             request.Method = "GET"
             request.ContentType = "application/json"
 

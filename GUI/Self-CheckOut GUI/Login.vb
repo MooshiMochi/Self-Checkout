@@ -3,6 +3,8 @@ Imports System.Web.Script.Serialization
 
 Public Class Login
 
+    Dim username As String
+    Dim password As String
 
     Private Sub TxtUsername_TextChanged(sender As Object, e As EventArgs) Handles txtUsername.TextChanged
         If txtUsername.Text = "" Then
@@ -24,8 +26,8 @@ Public Class Login
 
     Private Sub BtnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
 
-        Dim username As String = txtUsername.Text
-        Dim password As String = txtPassword.Text
+        username = txtUsername.Text.ToLower()
+        password = txtPassword.Text.ToLower()
 
         If username = "" Or password = "" Then
             lblErrUsername.Show()
@@ -38,7 +40,7 @@ Public Class Login
 
         Dim RequestProxy As New Request()
         Dim data As String = "{""username"":""" & username & """,""password"":""" & password & """}"
-        Dim request As HttpWebRequest = WebRequest.Create("http://localhost:8000/login")
+        Dim request As HttpWebRequest = WebRequest.Create(Constants.BASE_API_URL & "/login")
         RequestProxy.MakeRequest(request, "POST", "application/json", data, AddressOf RequestCallback)
 
     End Sub
@@ -49,21 +51,25 @@ Public Class Login
     End Sub
 
     Private Function RequestCallback(ByVal response As String) As Dictionary(Of String, String)
-
-        Console.WriteLine(response)
-
         ' parse the response string to a dict
         Dim jss As New JavaScriptSerializer()
         Dim dict As Dictionary(Of String, String) = jss.Deserialize(Of Dictionary(Of String, String))(response)
 
         If dict.Item("success") = True Then
             Me.Close()
-            Home.Show()
-            ' MsgBox("Login successful")
+            Dim home As New Home(username, dict("customerID"))
+            home.Show()
         Else
             MsgBox("Login unsuccessful")
         End If
         Return dict
     End Function
+
+
+    Private Sub TxtUsername_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtUsername.KeyPress, txtPassword.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            btnLogin.PerformClick()
+        End If
+    End Sub
 
 End Class

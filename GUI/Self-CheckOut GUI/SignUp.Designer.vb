@@ -37,7 +37,7 @@ Partial Class SignUp
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Lucida Sans", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(492, 411)
+        Me.Label2.Location = New System.Drawing.Point(492, 387)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(418, 37)
         Me.Label2.TabIndex = 22
@@ -56,20 +56,20 @@ Partial Class SignUp
         '
         'txtPassword
         '
-        Me.txtPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPassword.Location = New System.Drawing.Point(391, 451)
+        Me.txtPassword.Font = New System.Drawing.Font("Lucida Sans", 12.0!)
+        Me.txtPassword.Location = New System.Drawing.Point(391, 427)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(621, 80)
+        Me.txtPassword.Size = New System.Drawing.Size(621, 45)
         Me.txtPassword.TabIndex = 20
         Me.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtEmail
         '
-        Me.txtEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEmail.Font = New System.Drawing.Font("Lucida Sans", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEmail.Location = New System.Drawing.Point(391, 258)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(621, 80)
+        Me.txtEmail.Size = New System.Drawing.Size(621, 45)
         Me.txtEmail.TabIndex = 19
         Me.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -83,9 +83,9 @@ Partial Class SignUp
         Me.btnSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSignUp.Font = New System.Drawing.Font("Lucida Sans", 16.125!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSignUp.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.btnSignUp.Location = New System.Drawing.Point(499, 789)
+        Me.btnSignUp.Location = New System.Drawing.Point(499, 741)
         Me.btnSignUp.Name = "btnSignUp"
-        Me.btnSignUp.Size = New System.Drawing.Size(394, 113)
+        Me.btnSignUp.Size = New System.Drawing.Size(394, 104)
         Me.btnSignUp.TabIndex = 18
         Me.btnSignUp.Text = "Create Account"
         Me.btnSignUp.UseVisualStyleBackColor = False
@@ -106,7 +106,7 @@ Partial Class SignUp
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Lucida Sans", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(453, 599)
+        Me.Label3.Location = New System.Drawing.Point(454, 558)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(493, 37)
         Me.Label3.TabIndex = 24
@@ -114,11 +114,11 @@ Partial Class SignUp
         '
         'txtPasswordConfirm
         '
-        Me.txtPasswordConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPasswordConfirm.Location = New System.Drawing.Point(391, 639)
+        Me.txtPasswordConfirm.Font = New System.Drawing.Font("Lucida Sans", 12.0!)
+        Me.txtPasswordConfirm.Location = New System.Drawing.Point(391, 607)
         Me.txtPasswordConfirm.Name = "txtPasswordConfirm"
         Me.txtPasswordConfirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPasswordConfirm.Size = New System.Drawing.Size(621, 80)
+        Me.txtPasswordConfirm.Size = New System.Drawing.Size(621, 45)
         Me.txtPasswordConfirm.TabIndex = 23
         Me.txtPasswordConfirm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -127,7 +127,7 @@ Partial Class SignUp
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(132, Byte), Integer), CType(CType(116, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1398, 1020)
+        Me.ClientSize = New System.Drawing.Size(1398, 944)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtPasswordConfirm)
         Me.Controls.Add(Me.Label2)
