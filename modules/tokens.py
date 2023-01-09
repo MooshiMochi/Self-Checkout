@@ -10,6 +10,8 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+assert SECRET_KEY is not None, "500 Invalid Secret Key!"
+
 
 def generate_token(username: str, password_hash: str) -> str:
     """
