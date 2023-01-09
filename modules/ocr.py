@@ -5,7 +5,7 @@ import pytesseract
 from modules.faceDetect import load_image
 
 
-def process_image(image_path) -> np.ndarray:
+def process_image(image_path_or_bytes) -> np.ndarray:
     """
     __Summary__
 
@@ -21,15 +21,23 @@ def process_image(image_path) -> np.ndarray:
     """
 
     # load the image
-    img = load_image(image_path)
+    if isinstance(image_path_or_bytes, bytes):
+        img = load_image(image_bytes=image_path_or_bytes)
+    else:
+        img = load_image(image_path_or_bytes)
 
     # convert the image to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # apply image thresholding to enhance the contrast of the text
-    _, img_threshold = cv2.adaptiveThreshold(
+    threshold_result = cv2.adaptiveThreshold(
         gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2
     )
+
+    try:
+        _, img_threshold = threshold_result
+    except ValueError:
+        img_threshold = threshold_result
 
     # apply image sharpening to improve the clarity of the text
     kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
@@ -45,7 +53,7 @@ def process_image(image_path) -> np.ndarray:
     return denosied
 
 
-def read_text(image_path) -> list[str]:
+def read_text(image_path_or_bytes) -> list[str]:
     """
     __Summary__
 
@@ -60,5 +68,5 @@ def read_text(image_path) -> list[str]:
     * list[str]: The text from the image
     """
     # use Tesseract to process the preprocessed image and extract the text
-    text = pytesseract.image_to_string(image_path)
+    text = pytesseract.image_to_string(image_path_or_bytes)
     return text

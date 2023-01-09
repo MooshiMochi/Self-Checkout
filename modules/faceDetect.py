@@ -16,7 +16,7 @@ class CV2Image(Mat):
     """A wrapper for cv2 images use for type hinting"""
 
 
-def load_image(image_path: str) -> CV2Image:
+def load_image(image_path: str = None, image_bytes: bytes = None) -> CV2Image:
     """Returns the image at the given path
 
     __Summary__
@@ -39,6 +39,14 @@ def load_image(image_path: str) -> CV2Image:
     >>> load_image("image.jpg")
     <CV2Image>
     """
+
+    if not image_path and not image_bytes:
+        raise ValueError("Either image_path or image_bytes must be provided")
+
+    if image_bytes:
+        if isinstance(image_bytes, str):
+            image_bytes = image_bytes.encode()
+        return cv2.imdecode(np.frombuffer(image_bytes, np.uint8), -1)
 
     return cv2.imread(image_path)
 
