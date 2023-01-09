@@ -1,4 +1,5 @@
 ﻿
+Imports System.Text.RegularExpressions
 Imports System.Net
 Imports System.Web.Script.Serialization
 
@@ -8,7 +9,11 @@ Public Class SignUp
         Dim password As String = txtPassword.Text
         Dim confirmPassword As String = txtPasswordConfirm.Text
 
-        If password = confirmPassword Then
+        If Not Regex.IsMatch(email, "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$") Then
+            MessageBox.Show("The email you entered is not valid." & vbNewLine & "Please enter a valid email address!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+
+        ElseIf password = confirmPassword And password <> "" And confirmPassword <> "" Then
 
             Dim request As HttpWebRequest = WebRequest.Create(Constants.BASE_API_URL & "/register")
 
