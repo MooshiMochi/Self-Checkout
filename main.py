@@ -19,7 +19,7 @@ from models.errors import (
 )
 from modules.database import Database
 from modules.error_handler import on_error
-from modules.OTPGen import check_code, generate_authenticator_setup_qr_code
+from modules.otpgen import check_code, generate_authenticator_setup_qr_code
 from modules.utils import generate_qr
 
 
